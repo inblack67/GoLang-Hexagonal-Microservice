@@ -78,9 +78,11 @@ func (r *mongodbRepo) Store(redirect *shortener.Redirect) error {
 	collection := r.client.Database(r.database).Collection(collectionName)
 
 	_, err := collection.InsertOne(ctx, bson.M{
-		"code": redirect.Code,
-		"ur;": redirect.URL,
-		"createdAt": redirect.CreatedAt
+		"code":      redirect.Code,
+		"ur":        redirect.URL,
+		"createdAt": redirect.CreatedAt,
 	})
+
+	return err
 
 }
